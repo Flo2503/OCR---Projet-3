@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5CF6B3A82102964700C370AC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3A72102964700C370AC /* main.swift */; };
+		5CF6B3B62102980B00C370AC /* character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3AE2102980A00C370AC /* character.swift */; };
+		5CF6B3B72102980B00C370AC /* darwf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3AF2102980A00C370AC /* darwf.swift */; };
+		5CF6B3B82102980B00C370AC /* mage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3B02102980A00C370AC /* mage.swift */; };
+		5CF6B3BA2102980B00C370AC /* fighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3B22102980A00C370AC /* fighter.swift */; };
+		5CF6B3BB2102980B00C370AC /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3B32102980B00C370AC /* player.swift */; };
+		5CF6B3BC2102980B00C370AC /* weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3B42102980B00C370AC /* weapon.swift */; };
+		5CF6B3BD2102980B00C370AC /* colossus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3B52102980B00C370AC /* colossus.swift */; };
+		5CF6B3BF2102987D00C370AC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6B3BE2102987D00C370AC /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +31,14 @@
 
 /* Begin PBXFileReference section */
 		5CF6B3A42102964700C370AC /* videoGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = videoGame; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CF6B3A72102964700C370AC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5CF6B3AE2102980A00C370AC /* character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = character.swift; sourceTree = "<group>"; };
+		5CF6B3AF2102980A00C370AC /* darwf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = darwf.swift; sourceTree = "<group>"; };
+		5CF6B3B02102980A00C370AC /* mage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mage.swift; sourceTree = "<group>"; };
+		5CF6B3B22102980A00C370AC /* fighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fighter.swift; sourceTree = "<group>"; };
+		5CF6B3B32102980B00C370AC /* player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
+		5CF6B3B42102980B00C370AC /* weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = weapon.swift; sourceTree = "<group>"; };
+		5CF6B3B52102980B00C370AC /* colossus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colossus.swift; sourceTree = "<group>"; };
+		5CF6B3BE2102987D00C370AC /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +71,14 @@
 		5CF6B3A62102964700C370AC /* videoGame */ = {
 			isa = PBXGroup;
 			children = (
-				5CF6B3A72102964700C370AC /* main.swift */,
+				5CF6B3BE2102987D00C370AC /* main.swift */,
+				5CF6B3AE2102980A00C370AC /* character.swift */,
+				5CF6B3B52102980B00C370AC /* colossus.swift */,
+				5CF6B3AF2102980A00C370AC /* darwf.swift */,
+				5CF6B3B22102980A00C370AC /* fighter.swift */,
+				5CF6B3B02102980A00C370AC /* mage.swift */,
+				5CF6B3B32102980B00C370AC /* player.swift */,
+				5CF6B3B42102980B00C370AC /* weapon.swift */,
 			);
 			path = videoGame;
 			sourceTree = "<group>";
@@ -119,7 +140,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CF6B3A82102964700C370AC /* main.swift in Sources */,
+				5CF6B3BC2102980B00C370AC /* weapon.swift in Sources */,
+				5CF6B3BD2102980B00C370AC /* colossus.swift in Sources */,
+				5CF6B3BF2102987D00C370AC /* main.swift in Sources */,
+				5CF6B3B72102980B00C370AC /* darwf.swift in Sources */,
+				5CF6B3BB2102980B00C370AC /* player.swift in Sources */,
+				5CF6B3BA2102980B00C370AC /* fighter.swift in Sources */,
+				5CF6B3B62102980B00C370AC /* character.swift in Sources */,
+				5CF6B3B82102980B00C370AC /* mage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

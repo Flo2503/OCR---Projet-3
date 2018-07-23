@@ -1,23 +1,23 @@
 class Main {
-    var namePlayerOne = [Any]()
-    var nameplayerTwo = [Any]()
+    var playerOne: Player?
+    var playerTwo: Player?
     
     
     func firstPlayer() {
         print("Hello ! "
             + "\nPlease player one enter your name: ")
-        if let playerOne = readLine() {
-            namePlayerOne.append(playerOne)
-            print("\(playerOne) is the player one !")
+        if let playerOneName = readLine() {
+            playerOne = Player(name: playerOneName)
+            print("\(playerOne!.name) is the player one !")
             
         }
     }
     
     func secondPlayer() {
         print("Please player two enter your name: ")
-        if let playerTwo = readLine() {
-            nameplayerTwo.append(playerTwo)
-            print("\(playerTwo) is the player two !")
+        if let playerTwoName = readLine() {
+            playerTwo = Player(name: playerTwoName)
+            print("\(playerTwo!.name) is the player one !")
         }
     }
     

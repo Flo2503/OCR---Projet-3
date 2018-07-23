@@ -1,5 +1,5 @@
 class Fighter: Character {
-    override init(lifePoint: Int) {
-        super.init(lifePoint: 100)
+    init(fighterName: String) {
+        super.init(name: fighterName, lifePoint: 100, weapon: Sword(), icon: "💂‍♂️")
     }
 }

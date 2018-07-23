@@ -1,14 +1,15 @@
 class Character {
-    var lifePoint = 0
-    init(lifePoint: Int) {
+    var weapon: Weapon
+    var lifePoint: Int
+    var name: String
+    var icon: String
+    
+    init(name: String, lifePoint: Int, weapon: Weapon, icon: String) {
+        self.name = name
         self.lifePoint = lifePoint
-    }
-    
-    var weapon = ""
-    init(weapon: String) {
         self.weapon = weapon
+        self.icon = icon
     }
-    
 }
 
 

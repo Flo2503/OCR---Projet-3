@@ -1,6 +1,6 @@
 class Colossus: Character {
-    override init(lifePoint: Int) {
-        super.init(lifePoint: 200)
+    init(colossusName: String) {
+        super.init(name: colossusName, lifePoint: 200, weapon: Mace(), icon: "🏋️‍♂️")
     }
 }
 

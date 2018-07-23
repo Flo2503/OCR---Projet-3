@@ -1,5 +1,5 @@
 class Mage: Character {
-    override init(lifePoint: Int) {
-        super.init(lifePoint: 80)
+    init(mageName: String) {
+        super.init(name: mageName, lifePoint: 80, weapon: FireStick(), icon: "🧙‍♂️")
     }
 }

@@ -4,7 +4,7 @@ class Main {
     var playerTwo: Player?
     
     func createPlayer() -> Player {
-        print("Please enter your name :")
+        print("Hello! Please enter your name :")
         if let name = readLine() {
             return Player(name: name)
         }else {
@@ -19,26 +19,29 @@ class Main {
     }
     
     
+    
     func skillsCharacters() {
         print("Characters : "
             + "\n"
-            + "\nFighter : The classic attacker, a good warrior !"
-            + "\nLife: 100, Weapon: Sword)"
+            + "\nFighter \(Fighter(fighterName: "").icon): The classic attacker, a good warrior !"
+            + "\nLife Points: \(Fighter(fighterName: "").lifePoint) // Weapon: \(Fighter(fighterName: "").weapon.name) \(Fighter(fighterName: "").weapon.icon)"
             + "\n"
-            + "\nMage: His talent ? Heal the members of his team. "
-            + "\nLife: 80, Weapon: Fire Stick)"
+            + "\nMage \(Mage(mageName: "").icon): His talent ? Heal the members of his team. "
+            + "\nLife Points: \(Mage(mageName: "").lifePoint) // Weapon: \(Mage(mageName: "").weapon.name) \(Mage(mageName: "").weapon.icon)"
             + "\n"
-            + "\nColossus: Imposing and very resistant, but it will not hurt you badly."
-            + "\nLife: 200, Weapon: Mace)"
+            + "\nColossus \(Colossus(colossusName: "").icon): Imposing and very resistant, but it will not hurt you badly."
+            + "\nLife Points: \(Colossus(colossusName: "").lifePoint) // Weapon: \(Colossus(colossusName: "").weapon.name) \(Colossus(colossusName: "").weapon.icon)"
             + "\n"
-            + "\nDarwf: His ax will deal you a lot of damage, but he does not have a lot of health."
-            + "\nLife: 50, Weapon: Ax")
+            + "\nDarwf \(Darwf(darwfName: "").icon): His ax will deal you a lot of damage, but he does not have a lot of health."
+            + "\nLife Points: \(Darwf(darwfName: "").lifePoint) // Weapon: \(Darwf(darwfName: "").weapon.name) \(Darwf(darwfName: "").weapon.icon)")
+    
     }
     
     
 }
 
 Main().start()
-
+var choice = Main()
+choice.skillsCharacters()
 
 

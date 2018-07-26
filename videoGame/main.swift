@@ -20,7 +20,7 @@ class Main {
     
     
     
-    func skillsCharacters() {
+    func displayCharacters() {
         print("Characters : "
             + "\n"
             + "\nFighter \(Fighter(fighterName: "").icon): The classic attacker, a good warrior !"
@@ -33,15 +33,26 @@ class Main {
             + "\nLife Points: \(Colossus(colossusName: "").lifePoint) // Weapon: \(Colossus(colossusName: "").weapon.name) \(Colossus(colossusName: "").weapon.icon)"
             + "\n"
             + "\nDarwf \(Darwf(darwfName: "").icon): His ax will deal you a lot of damage, but he does not have a lot of health."
-            + "\nLife Points: \(Darwf(darwfName: "").lifePoint) // Weapon: \(Darwf(darwfName: "").weapon.name) \(Darwf(darwfName: "").weapon.icon)")
+            + "\nLife Points: \(Darwf(darwfName: "").lifePoint) // Weapon: \(Darwf(darwfName: "").weapon.name) \(Darwf(darwfName: "").weapon.icon)"
+            + "\n")
+        
+    }
     
+    func chooseCharacters() {
+        print("Choose a character !"
+        + "\n1. Fighter"
+        + "\n2. Mage"
+        + "\n3. Colossus"
+        + "\n4. Darwf")
+        
+        
     }
     
     
 }
 
 Main().start()
-var choice = Main()
-choice.skillsCharacters()
-
+var characters = Main()
+characters.displayCharacters()
+characters.chooseCharacters()
 

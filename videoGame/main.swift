@@ -13,7 +13,7 @@ class Main {
         }
     }
     
-    func start() {
+    func createPlayers() {
         playerOne = createPlayer()
         playerTwo = createPlayer()
     }
@@ -50,20 +50,16 @@ class Main {
             switch choice {
             case"1":
                 print("You added Fighter to your team")
-                nameFighter()
-                return Fighter(fighterName: "")
+                return Fighter(fighterName: nameCharacter())
             case"2":
                 print("You added Mage to your team")
-                nameMage()
-                return Mage(mageName: "")
+                return Mage(mageName: nameCharacter())
             case"3":
                 print("You added Colossus to your team")
-                nameColossus()
-                return Colossus(colossusName: "")
+                return Colossus(colossusName: nameCharacter())
             case"4":
                 print("You added Darwf to your team")
-                nameDarwf()
-                return Darwf(darwfName: "")
+                return Darwf(darwfName: nameCharacter())
             default:
                 print("Incorect choice. Please choose a character: ")
                 return chooseCharacters()
@@ -73,49 +69,41 @@ class Main {
         return chooseCharacters()
     }
     
-    func nameFighter() -> Fighter {
+    func nameCharacter() -> String {
         print("Please name your character: ")
-        if let name = readLine() {
-            return Fighter(fighterName: name)
+        if let name = readLine(), isValid(name: name) {
+            return name
         }else {
             print("Incorect name, please enter a valid name !")
-            return nameFighter()
+            return nameCharacter()
         }
     }
     
-    func nameMage() -> Mage {
-        print("Please name your character: ")
-        if let name = readLine() {
-            return Mage(mageName: name)
-        }else {
-            print("Incorect name, please enter a valid name !")
-            return nameMage()
+    func isValid(name: String) -> Bool {
+        var nameList = [String]()
+        if let p1 = playerOne {
+            nameList.append(p1.name)
+            for character in p1.team {
+            nameList.append(character.name)
+            }
         }
+        if let p2 = playerTwo {
+            nameList.append(p2.name)
+            for character in p2.team {
+            nameList.append(character.name)
+            }
+        }
+            
+        return !name.isEmpty && !nameList.contains(name)
     }
     
-    func nameColossus() -> Colossus {
-        print("Please name your character: ")
-        if let name = readLine() {
-            return Colossus(colossusName: name)
-        }else {
-            print("Incorect name, please enter a valid name !")
-            return nameColossus()
-        }
-    }
     
-    func nameDarwf() -> Darwf {
-        print("Please name your character: ")
-        if let name = readLine() {
-            return Darwf(darwfName: name)
-        }else {
-            print("Incorect name, please enter a valid name !")
-            return nameDarwf()
-        }
-    }
+    
     
 }
 
-Main().start()
-var characters = Main()
-characters.displayCharacters()
-characters.chooseCharacters()
+let main = Main()
+main.createPlayers()
+main.displayCharacters()
+print(main.chooseCharacters().name)
+//characters.playerOne?.team.append(Fighter())

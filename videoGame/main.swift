@@ -4,7 +4,6 @@ class Main {
     var playerTwo: Player?
     
     func createPlayer() -> Player {
-        print("Hello! Please enter your name :")
         if let name = readLine() {
             return Player(name: name)
         }else {
@@ -14,7 +13,10 @@ class Main {
     }
     
     func createPlayers() {
+        print("Hello !"
+        + "\nPlayer One enter your name:")
         playerOne = createPlayer()
+        print("Player Two enter your name: ")
         playerTwo = createPlayer()
     }
     
@@ -32,8 +34,8 @@ class Main {
             + "\nColossus \(Colossus(colossusName: "").icon): Imposing and very resistant, but it will not hurt you badly."
             + "\nLife Points: \(Colossus(colossusName: "").lifePoint) // Weapon: \(Colossus(colossusName: "").weapon.name) \(Colossus(colossusName: "").weapon.icon)"
             + "\n"
-            + "\nDarwf \(Darwf(darwfName: "").icon): His ax will deal you a lot of damage, but he does not have a lot of health."
-            + "\nLife Points: \(Darwf(darwfName: "").lifePoint) // Weapon: \(Darwf(darwfName: "").weapon.name) \(Darwf(darwfName: "").weapon.icon)"
+            + "\nDwarf \(Dwarf(dwarfNAme: "").icon): His ax will deal you a lot of damage, but he does not have a lot of health."
+            + "\nLife Points: \(Dwarf(dwarfNAme: "").lifePoint) // Weapon: \(Dwarf(dwarfNAme: "").weapon.name) \(Dwarf(dwarfNAme: "").weapon.icon)"
             + "\n")
         
     }
@@ -44,22 +46,18 @@ class Main {
             + "\n1. Fighter"
             + "\n2. Mage"
             + "\n3. Colossus"
-            + "\n4. Darwf")
+            + "\n4. Dwarf")
         
         if let choice = readLine() {
             switch choice {
             case"1":
-                print("You added Fighter to your team")
                 return Fighter(fighterName: nameCharacter())
             case"2":
-                print("You added Mage to your team")
                 return Mage(mageName: nameCharacter())
             case"3":
-                print("You added Colossus to your team")
                 return Colossus(colossusName: nameCharacter())
             case"4":
-                print("You added Darwf to your team")
-                return Darwf(darwfName: nameCharacter())
+                return Dwarf(dwarfNAme: nameCharacter())
             default:
                 print("Incorect choice. Please choose a character: ")
                 return chooseCharacters()
@@ -68,6 +66,7 @@ class Main {
         }
         return chooseCharacters()
     }
+    
     
     func nameCharacter() -> String {
         print("Please name your character: ")
@@ -99,11 +98,9 @@ class Main {
     
     
     
-    
 }
 
 let main = Main()
 main.createPlayers()
 main.displayCharacters()
 print(main.chooseCharacters().name)
-//characters.playerOne?.team.append(Fighter())

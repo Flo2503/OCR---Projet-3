@@ -1,5 +1,5 @@
 class Dwarf: Character {
-    init(darwfName: String) {
-        super.init(name: darwfName, lifePoint: 50, weapon: Ax(), icon: "🧔")
+    init(dwarfNAme: String) {
+        super.init(name: dwarfNAme, lifePoint: 50, weapon: Ax(), icon: "🧔")
     }
 }

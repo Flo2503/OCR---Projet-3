@@ -1,5 +1,9 @@
 class Dwarf: Character {
-    init(dwarfNAme: String) {
-        super.init(name: dwarfNAme, lifePoint: 50, weapon: Ax(), icon: "🧔")
+    static let defaultIcon = "🧔"
+    static let defaultLifepoint = 50
+    static let defaultWeapon = Ax()
+    
+    init(dwarfName: String) {
+        super.init(name: dwarfName, lifePoint: 50, weapon: Ax(), icon: "🧔")
     }
 }

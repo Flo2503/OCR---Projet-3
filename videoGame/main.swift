@@ -42,7 +42,7 @@ class Main {
     
     
     func chooseCharacters() -> Character  {
-        print( "\n1. Fighter"
+        print("\n1. Fighter"
             + "\n2. Mage"
             + "\n3. Colossus"
             + "\n4. Dwarf")
@@ -99,19 +99,30 @@ class Main {
     
     func populateTeam() {
         for i in 0...2 {
-            print("Player one choose a charater: ")
+            print("Player one choose a character: ")
             playerOne?.team.append(main.chooseCharacters())
-            print("Player two choose a charater: ")
+            print("Player two choose a character: ")
             playerTwo?.team.append(main.chooseCharacters())
         }
         
     }
     
-}
+    func displayTeam() {
+        print("\(playerOne!.name)! Your team is composed of the following characters: "
+        + "\n\(playerOne!.team)"
+        + "\nTheir names are: \(getNames(player: playerOne!))"
+        + "\n"
+        + "\n"
+        + "\(playerTwo!.name)! Your team is composed of the following characters: "
+        + "\n\(playerTwo!.team)"
+        + "\nTheir names are: \(getNames(player: playerTwo!))")
+        
+    }
 
+
+}
 let main = Main()
 main.createPlayers()
 main.displayCharacters()
 main.populateTeam()
-
-
+main.displayTeam()

@@ -1,9 +1,9 @@
 class Mage: Character {
     static let defaultIcon = "🧙‍♂️"
     static let defaultLifepoint = 80
-    static let defaultWeapon = FireStick()
+    static let defaultWeapon = HealingPower()
     
     init(mageName: String) {
-        super.init(name: mageName, lifePoint: 80, weapon: FireStick(), icon: "🧙‍♂️")
+        super.init(name: mageName, lifePoint: 80, weapon: HealingPower(), icon: "🧙‍♂️")
     }
 }

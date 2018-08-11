@@ -3,7 +3,7 @@ class Main {
     var playerOne: Player?
     var playerTwo: Player?
     
-// Ask name to yhe players and check if names are valid.
+// Ask name to the players and check if names are valid.
     func createPlayer() -> Player {
         if let name = readLine(), isValid(name: name) {
             return Player(name: name)
@@ -90,7 +90,7 @@ class Main {
         return !name.isEmpty && !nameList.contains(name)
     }
     
-// Gets names and add them nameList.
+// Gets names and add them in nameList.
     func getNames(player: Player?) -> [String] {
         var nameList = [String]()
         
@@ -114,7 +114,7 @@ class Main {
         
     }
 
-// Displays name of each player as well as the names and types of each character.
+// Displays name of each player, also display the names and types of each character.
     func displayTeam() {
         print("\(playerOne!.name)! Your team is composed of the following characters: "
         + "\n\(playerOne!.team)"

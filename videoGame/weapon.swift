@@ -1,3 +1,4 @@
+// Mother class for eaxh weapon.
 class Weapon  {
     var icon: String
     var name: String

@@ -1,3 +1,4 @@
+// Contains properties for colossus details.
 class Colossus: Character {
     static let defaultIcon = "🏋️‍♂️"
     static let defaultLifepoint = 200

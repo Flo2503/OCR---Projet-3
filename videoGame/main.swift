@@ -3,6 +3,7 @@ class Main {
     var playerOne: Player?
     var playerTwo: Player?
     
+// Ask name to yhe players and check if names are valid.
     func createPlayer() -> Player {
         if let name = readLine(), isValid(name: name) {
             return Player(name: name)
@@ -11,7 +12,8 @@ class Main {
             return createPlayer()
         }
     }
-    
+
+// Launch the game and create players alternately.
     func createPlayers() {
         print("Hello !"
         + "\nPlayer One enter your name:")
@@ -85,6 +87,7 @@ class Main {
         return !name.isEmpty && !nameList.contains(name)
     }
     
+// 
     func getNames(player: Player?) -> [String] {
         var nameList = [String]()
         
@@ -96,7 +99,8 @@ class Main {
         }
         return nameList
     }
-    
+
+// Loop allowing each player to choose and name characters alternately.
     func populateTeam() {
         for i in 0...2 {
             print("Player one choose a character: ")
@@ -106,7 +110,8 @@ class Main {
         }
         
     }
-    
+
+// Displays name of each player as well as the names and types of each character.
     func displayTeam() {
         print("\(playerOne!.name)! Your team is composed of the following characters: "
         + "\n\(playerOne!.team)"
@@ -121,6 +126,7 @@ class Main {
 
 
 }
+
 let main = Main()
 main.createPlayers()
 main.displayCharacters()

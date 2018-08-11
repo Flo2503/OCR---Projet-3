@@ -1,3 +1,4 @@
+// Contains properties for dwarf details.
 class Dwarf: Character {
     static let defaultIcon = "🧔"
     static let defaultLifepoint = 50

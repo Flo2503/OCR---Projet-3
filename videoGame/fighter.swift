@@ -1,3 +1,4 @@
+// Contains properties for fighter details.
 class Fighter: Character {
     static let defaultIcon = "💂‍♂️"
     static let defaultLifepoint = 100

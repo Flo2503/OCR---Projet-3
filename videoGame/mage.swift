@@ -1,3 +1,4 @@
+// Contains properties for mage details.
 class Mage: Character {
     static let defaultIcon = "🧙‍♂️"
     static let defaultLifepoint = 80

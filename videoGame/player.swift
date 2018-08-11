@@ -1,3 +1,4 @@
+// Mother class for each player.
 class Player {
     let name: String
     var team = [Character]()

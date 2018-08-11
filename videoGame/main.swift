@@ -23,7 +23,7 @@ class Main {
     }
     
     
-    
+// Display characters's details.
     func displayCharacters() {
         print("Characters : "
             + "\n"
@@ -42,7 +42,8 @@ class Main {
         
     }
     
-    
+
+// Allows players to choose their characters and name them.
     func chooseCharacters() -> Character  {
         print("\n1. Fighter"
             + "\n2. Mage"
@@ -70,6 +71,7 @@ class Main {
     }
     
     
+// Get characters's names given by the user. Also checks if names are valid. The method is called in chooseCharacters().
     func nameCharacter() -> String {
         print("Please name your character: ")
         if let name = readLine(), isValid(name: name) {
@@ -80,6 +82,7 @@ class Main {
         }
     }
     
+// Method to check if the name is not empty and if the names given by the user doesn't already exist.
     func isValid(name: String) -> Bool {
         var nameList = getNames(player: playerOne)
         nameList.append(contentsOf: getNames(player: playerTwo))
@@ -87,7 +90,7 @@ class Main {
         return !name.isEmpty && !nameList.contains(name)
     }
     
-// 
+// Gets names and add them nameList.
     func getNames(player: Player?) -> [String] {
         var nameList = [String]()
         
@@ -127,6 +130,7 @@ class Main {
 
 }
 
+//Main's instance
 let main = Main()
 main.createPlayers()
 main.displayCharacters()

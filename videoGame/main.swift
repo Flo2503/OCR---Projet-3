@@ -116,17 +116,22 @@ class Main {
 
 // Displays name of each player, also display the names and types of each character.
     func displayTeam() {
-        print("\(playerOne!.name)! Your team is composed of the following characters: "
-        + "\n\(playerOne!.team)"
-        + "\nTheir names are: \(getNames(player: playerOne!))"
-        + "\n"
-        + "\n"
-        + "\(playerTwo!.name)! Your team is composed of the following characters: "
-        + "\n\(playerTwo!.team)"
-        + "\nTheir names are: \(getNames(player: playerTwo!))")
-        
+        print("\n"
+            + "\n\(playerOne!.name) ! Your team is composed by the following characters :")
+        for characters in playerOne!.team {
+            print("\(characters.icon) \(characters.name)"
+                + "\nLife Point: \(characters.lifePoint)"
+                + "\nWeapon:  \(characters.weapon.name) \(characters.weapon.icon) ")
+        }
+        print("\n"
+            + "\n\(playerTwo!.name) ! Your team is composed by the following characters :")
+        for characters in playerTwo!.team {
+            print("\(characters.icon) \(characters.name)"
+                + "\nLife Point: \(characters.lifePoint)"
+                + "\nWeapon:  \(characters.weapon.name) \(characters.weapon.icon) ")
+        }
     }
-
+    
 
 }
 
@@ -136,3 +141,4 @@ main.createPlayers()
 main.displayCharacters()
 main.populateTeam()
 main.displayTeam()
+

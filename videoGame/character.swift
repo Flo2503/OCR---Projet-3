@@ -11,7 +11,16 @@ class Character {
         self.weapon = weapon
         self.icon = icon
     }
+    
+    func attack(victim: Character) {
+        victim.lifePoint -= weapon.pointOfDamage
+    }
+    
+    func isAlive() -> Bool {
+        return self.lifePoint > 0
+    }
 }
+
 
 
 

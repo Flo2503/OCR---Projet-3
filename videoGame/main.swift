@@ -114,23 +114,40 @@ class Main {
         
     }
 
-// Displays name of each player, also display the names and types of each character.
+// Displays name of each player, also display details of each character in team.
     func displayTeam() {
         print("\n"
             + "\n\(playerOne!.name) ! Your team is composed by the following characters :")
         for characters in playerOne!.team {
             print("\(characters.icon) \(characters.name)"
                 + "\nLife Point: \(characters.lifePoint)"
-                + "\nWeapon:  \(characters.weapon.name) \(characters.weapon.icon) ")
+                + "\nWeapon: \(characters.weapon.name) \(characters.weapon.icon) ")
         }
         print("\n"
             + "\n\(playerTwo!.name) ! Your team is composed by the following characters :")
         for characters in playerTwo!.team {
             print("\(characters.icon) \(characters.name)"
                 + "\nLife Point: \(characters.lifePoint)"
-                + "\nWeapon:  \(characters.weapon.name) \(characters.weapon.icon) ")
+                + "\nWeapon: \(characters.weapon.name) \(characters.weapon.icon) ")
         }
     }
+ 
+
+    func selectCharacter(player: Player) -> Character {
+        for (index, character) in player.team.enumerated() {
+             print(index, ":", character.icon + " " + character.name)
+        }
+        
+        if let characterIndex = readLine() {
+            if let index = Int(characterIndex) {
+              let character = player.team[index]
+                print("You selected \(character.name)")
+                return character
+            }
+        }
+    }
+    
+    
     
 
 }
@@ -141,4 +158,12 @@ main.createPlayers()
 main.displayCharacters()
 main.populateTeam()
 main.displayTeam()
+while true {
+    var attacker = main.selectCharacter(player: main.playerOne!)
+    var victim =  main.selectCharacter(player: main.playerTwo!)
+    attacker.attack(victim: victim)
+     attacker = main.selectCharacter(player: main.playerTwo!)
+     victim =  main.selectCharacter(player: main.playerOne!)
+    attacker.attack(victim: victim)
+}
 

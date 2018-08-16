@@ -143,9 +143,13 @@ class Main {
               let character = player.team[index]
                 print("You selected \(character.name)")
                 return character
+            
             }
+            
         }
+        return selectCharacter(player: player)
     }
+
     
     
     
@@ -158,12 +162,20 @@ main.createPlayers()
 main.displayCharacters()
 main.populateTeam()
 main.displayTeam()
+
 while true {
+    print("Player One choose an attacker !")
     var attacker = main.selectCharacter(player: main.playerOne!)
+    print("Now choose your victim !")
     var victim =  main.selectCharacter(player: main.playerTwo!)
     attacker.attack(victim: victim)
-     attacker = main.selectCharacter(player: main.playerTwo!)
-     victim =  main.selectCharacter(player: main.playerOne!)
+    print("\(victim) has \(victim.lifePoint) lifes point left")
+    print("Player Two choose an attacker !")
+    attacker = main.selectCharacter(player: main.playerTwo!)
+    print("Now choose your victim !")
+    victim =  main.selectCharacter(player: main.playerOne!)
+    print("\(victim) has \(victim.lifePoint) left")
     attacker.attack(victim: victim)
 }
+
 

@@ -16,6 +16,10 @@ class Character {
         victim.lifePoint -= weapon.pointOfDamage
     }
     
+    func treat(friend: Character) {
+        friend.lifePoint -= weapon.pointOfDamage
+    }
+    
     func isAlive() -> Bool {
         return self.lifePoint > 0
     }

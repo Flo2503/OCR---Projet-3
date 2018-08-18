@@ -115,24 +115,22 @@ class Main {
     }
 
 // Displays name of each player, also display details of each character in team.
-    func displayTeam() {
+    func playerTeam(player: Player?) {
         print("\n"
-            + "\n\(playerOne!.name) ! Your team is composed by the following characters :")
-        for characters in playerOne!.team {
-            print("\(characters.icon) \(characters.name)"
-                + "\nLife Point: \(characters.lifePoint)"
-                + "\nWeapon: \(characters.weapon.name) \(characters.weapon.icon) ")
-        }
-        print("\n"
-            + "\n\(playerTwo!.name) ! Your team is composed by the following characters :")
-        for characters in playerTwo!.team {
+            + "\n\(player!.name) ! Your team is composed by the following characters :")
+        for characters in player!.team {
             print("\(characters.icon) \(characters.name)"
                 + "\nLife Point: \(characters.lifePoint)"
                 + "\nWeapon: \(characters.weapon.name) \(characters.weapon.icon) ")
         }
     }
+    
+    func displayTeam() {
+        playerTeam(player: playerOne)
+        playerTeam(player: playerTwo)
+    }
  
-
+    
     func selectCharacter(player: Player) -> Character {
         for (index, character) in player.team.enumerated() {
              print(index, ":", character.icon + " " + character.name)
@@ -144,13 +142,16 @@ class Main {
                 print("You selected \(character.name)")
                 return character
             
+            }else {
+                print("Incorect choice, please select a character: ")
+                return selectCharacter(player: player)
             }
+            
             
         }
         return selectCharacter(player: player)
     }
 
-    
     
     
 
@@ -163,18 +164,18 @@ main.displayCharacters()
 main.populateTeam()
 main.displayTeam()
 
-while true {
+while true  {
     print("Player One choose an attacker !")
     var attacker = main.selectCharacter(player: main.playerOne!)
     print("Now choose your victim !")
     var victim =  main.selectCharacter(player: main.playerTwo!)
     attacker.attack(victim: victim)
-    print("\(victim) has \(victim.lifePoint) lifes point left")
+    print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
     print("Player Two choose an attacker !")
     attacker = main.selectCharacter(player: main.playerTwo!)
     print("Now choose your victim !")
     victim =  main.selectCharacter(player: main.playerOne!)
-    print("\(victim) has \(victim.lifePoint) left")
+    print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
     attacker.attack(victim: victim)
 }
 

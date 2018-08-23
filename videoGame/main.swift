@@ -175,7 +175,7 @@ main.displayTeam()
 
 
 while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive() {
-    print("Player One choose an attacker !")
+    print("\(main.playerOne!.name) choose an attacker !")
     var attacker = main.selectCharacter(player: main.playerOne!)
     var victim: Character
     if attacker is Mage {
@@ -186,9 +186,10 @@ while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive
         victim =  main.selectCharacter(player: main.playerTwo!)
     }
     
+    
     attacker.attack(victim: victim)
     print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
-    print("Player Two choose an attacker !")
+    print("\(main.playerTwo!.name) choose an attacker !")
     attacker = main.selectCharacter(player: main.playerTwo!)
     if attacker is Mage {
         print("Select a character to treat :")
@@ -201,5 +202,7 @@ while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive
     print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
     
 }
+
+
 
 

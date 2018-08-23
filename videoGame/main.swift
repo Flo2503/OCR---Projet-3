@@ -133,14 +133,23 @@ class Main {
     
     func selectCharacter(player: Player) -> Character {
         for (index, character) in player.team.enumerated() {
-             print(index, ":", character.icon + " " + character.name)
+            if character.isAlive() {
+              print(index, ":", character.icon + " " + character.name)
+            }
         }
         
         if let characterIndex = readLine() {
-            if let index = Int(characterIndex) {
+            if let index = Int(characterIndex), player.team.indices.contains(index) {
               let character = player.team[index]
-                print("You selected \(character.name)")
-                return character
+                if character.isAlive() {
+                    print("You selected \(character.name)")
+                    return character
+                    
+                }else {
+                    print("This character is dead, choose an other one: ")
+                    return selectCharacter(player: player)
+                }
+                
             
             }else {
                 print("Incorect choice, please select a character: ")
@@ -153,7 +162,6 @@ class Main {
     }
 
     
-    
 
 }
 
@@ -164,19 +172,34 @@ main.displayCharacters()
 main.populateTeam()
 main.displayTeam()
 
-while true  {
+
+
+while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive() {
     print("Player One choose an attacker !")
     var attacker = main.selectCharacter(player: main.playerOne!)
-    print("Now choose your victim !")
-    var victim =  main.selectCharacter(player: main.playerTwo!)
+    var victim: Character
+    if attacker is Mage {
+        print("Select a character to treat :")
+        victim = main.selectCharacter(player: main.playerOne!)
+    }else {
+        print("Now choose your victim !")
+        victim =  main.selectCharacter(player: main.playerTwo!)
+    }
+    
     attacker.attack(victim: victim)
     print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
     print("Player Two choose an attacker !")
     attacker = main.selectCharacter(player: main.playerTwo!)
-    print("Now choose your victim !")
-    victim =  main.selectCharacter(player: main.playerOne!)
-    print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
+    if attacker is Mage {
+        print("Select a character to treat :")
+        victim = main.selectCharacter(player: main.playerTwo!)
+    }else {
+        print("Now choose your victim !")
+        victim =  main.selectCharacter(player: main.playerOne!)
+    }
     attacker.attack(victim: victim)
+    print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
+    
 }
 
 

@@ -7,5 +7,8 @@ class Player {
         self.name = name
     }
     
-
+    func hasACharacterAlive() -> Bool {
+        return !team.filter({$0.isAlive()}).isEmpty
+    }
 }
+

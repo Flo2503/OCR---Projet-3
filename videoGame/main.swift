@@ -138,7 +138,7 @@ class Main {
     func selectCharacter(player: Player) -> Character {
         for (index, character) in player.team.enumerated() {
             if character.isAlive() {
-              print(index, ":", character.icon + " " + character.name)
+                print(index, ":", character.icon + " " + character.name + " ",  character.lifePoint, "❤️")
             }
         }
         if let characterIndex = readLine() {
@@ -184,11 +184,11 @@ while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive
     }
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
-        print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
+        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left")
     }else {
         print("\(victim.name) is dead 🧟 ")
     }
-    
+        
     print("\(main.playerTwo!.name) choose an attacker !")
     attacker = main.selectCharacter(player: main.playerTwo!)
     if attacker is Mage {
@@ -201,11 +201,13 @@ while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive
     }
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
-        print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
+        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left")
     }else {
         print("\(victim.name) is dead 🧟 ")
     }
+    
 }
+
 
 
 

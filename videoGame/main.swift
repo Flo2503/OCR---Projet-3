@@ -175,26 +175,36 @@ while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive
     var attacker = main.selectCharacter(player: main.playerOne!)
     var victim: Character
     if attacker is Mage {
-        print("Select a character to treat :")
+        print("Select a character to treat in your team 💉 :")
         victim = main.selectCharacter(player: main.playerOne!)
+        print("You treat \(victim.name) ❤️")
     }else {
         print("Now choose your victim !")
         victim =  main.selectCharacter(player: main.playerTwo!)
     }
     attacker.attack(victim: victim)
-    print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
+    if victim.lifePoint > 0 {
+        print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
+    }else {
+        print("\(victim.name) is dead 🧟 ")
+    }
+    
     print("\(main.playerTwo!.name) choose an attacker !")
     attacker = main.selectCharacter(player: main.playerTwo!)
     if attacker is Mage {
-        print("Select a character to treat :")
+        print("Select a character to treat in your team 💉 :")
         victim = main.selectCharacter(player: main.playerTwo!)
+        print("You treat \(victim.name) ❤️")
     }else {
         print("Now choose your victim !")
         victim =  main.selectCharacter(player: main.playerOne!)
     }
     attacker.attack(victim: victim)
-    print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
-    
+    if victim.lifePoint > 0 {
+        print("\(victim.icon + " " + victim.name) has \(victim.lifePoint) lifes point left")
+    }else {
+        print("\(victim.name) is dead 🧟 ")
+    }
 }
 
 

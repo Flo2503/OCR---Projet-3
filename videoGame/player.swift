@@ -11,5 +11,6 @@ class Player {
     func hasACharacterAlive() -> Bool {
         return !team.filter({$0.isAlive()}).isEmpty
     }
+    
 }
 

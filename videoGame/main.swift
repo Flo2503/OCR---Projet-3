@@ -122,7 +122,8 @@ class Main {
         for characters in player!.team {
             print("\(characters.icon) \(characters.name)"
                 + "\nLife Point: \(characters.lifePoint)"
-                + "\nWeapon: \(characters.weapon.name) \(characters.weapon.icon) ")
+                + "\nWeapon: \(characters.weapon.name) \(characters.weapon.icon) "
+                + "\n")
         }
     }
     
@@ -145,7 +146,8 @@ class Main {
             if let index = Int(characterIndex), player.team.indices.contains(index) {
               let character = player.team[index]
                 if character.isAlive() {
-                    print("You selected \(character.name)")
+                    print("You selected \(character.name)"
+                    + "\n")
                     return character
                 }else {
                     print("This character is dead, choose an other one: ")
@@ -184,11 +186,13 @@ while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive
     }
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
-        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left")
+        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left"
+             + "\n")
     }else {
-        print("\(victim.name) is dead 🧟 ")
+        print("\(victim.name) is dead 🧟 "
+             + "\n")
     }
-        
+    
     print("\(main.playerTwo!.name) choose an attacker !")
     attacker = main.selectCharacter(player: main.playerTwo!)
     if attacker is Mage {
@@ -197,16 +201,20 @@ while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive
         print("You treat \(victim.name) ❤️")
     }else {
         print("Now choose your victim !")
-        victim =  main.selectCharacter(player: main.playerOne!)
+        victim  =  main.selectCharacter(player: main.playerOne!)
     }
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
-        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left")
+        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left"
+            + "\n")
     }else {
-        print("\(victim.name) is dead 🧟 ")
+        print("\(victim.name) is dead 🧟 "
+             + "\n")
     }
     
+    
 }
+
 
 
 

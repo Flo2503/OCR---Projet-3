@@ -1,3 +1,5 @@
+import Foundation
+
 class Main {
     
     var playerOne: Player?
@@ -8,7 +10,7 @@ class Main {
     func createPlayer() -> Player {
         if let name = readLine(), isValid(name: name) {
             return Player(name: name)
-        }else {
+        } else {
             print("Incorect name, please enter a valid name !")
             return createPlayer()
         }
@@ -75,7 +77,7 @@ class Main {
         print("Please name your character: ")
         if let name = readLine(), isValid(name: name) {
             return name
-        }else {
+        } else {
             print("Incorect name, please enter a valid name !")
             return nameCharacter()
         }
@@ -149,7 +151,7 @@ class Main {
                     print("You selected \(character.name)"
                     + "\n")
                     return character
-                }else {
+                } else {
                     print("This character is dead, choose an other one: ")
                     return selectCharacter(player: player)
                 }
@@ -159,7 +161,9 @@ class Main {
         return selectCharacter(player: player)
     }
 
+    
 }
+
 
 
 
@@ -170,50 +174,68 @@ main.displayCharacters()
 main.populateTeam()
 main.displayTeam()
 
-
 /* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
-while main.playerOne!.hasACharacterAlive() && main.playerTwo!.hasACharacterAlive() {
-    print("\(main.playerOne!.name) choose an attacker !")
-    var attacker = main.selectCharacter(player: main.playerOne!)
+
+guard let playerOne = main.playerOne, let playerTwo = main.playerTwo else {
+    fatalError()
+}
+
+while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
+    print("\(playerOne.name) choose an attacker !")
+    var attacker = main.selectCharacter(player: playerOne)
     var victim: Character
     if attacker is Mage {
         print("Select a character to treat in your team 💉 :")
-        victim = main.selectCharacter(player: main.playerOne!)
+        victim = main.selectCharacter(player: playerOne)
         print("You treat \(victim.name) ❤️")
-    }else {
+    } else {
         print("Now choose your victim !")
-        victim =  main.selectCharacter(player: main.playerTwo!)
+        victim =  main.selectCharacter(player: playerTwo)
     }
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
         print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left"
              + "\n")
-    }else {
+    } else {
         print("\(victim.name) is dead 🧟 "
              + "\n")
     }
-    
-    print("\(main.playerTwo!.name) choose an attacker !")
-    attacker = main.selectCharacter(player: main.playerTwo!)
+    if !playerTwo.hasACharacterAlive() {
+        print("\(playerTwo.name) all your character are dead... You LOOSE... 😒 "
+            + "\n"
+            + "\n\(playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉")
+        break
+    }
+    print("\(playerTwo.name) choose an attacker !")
+    attacker = main.selectCharacter(player: playerTwo)
     if attacker is Mage {
         print("Select a character to treat in your team 💉 :")
-        victim = main.selectCharacter(player: main.playerTwo!)
+        victim = main.selectCharacter(player: playerTwo)
         print("You treat \(victim.name) ❤️")
-    }else {
+    } else {
         print("Now choose your victim !")
-        victim  =  main.selectCharacter(player: main.playerOne!)
+        victim  =  main.selectCharacter(player: playerOne)
     }
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
         print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left"
             + "\n")
-    }else {
+    } else {
         print("\(victim.name) is dead 🧟 "
              + "\n")
     }
+    if !playerOne.hasACharacterAlive() {
+        print("\(playerOne.name) all your character are dead... You LOOSE... 😒 "
+            + "\n"
+            + "\n\(playerTwo.name) you annihilated the opposing team, you WIN !! 🎉 🎉")
+        break
+        
+    }
     
     
+
 }
+
 
 
 

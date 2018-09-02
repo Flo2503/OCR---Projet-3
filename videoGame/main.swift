@@ -95,7 +95,6 @@ class Main {
 /* Method to avoid duplicate code in isValid() method. Parameter called player, type : Player. The method retunrs an array of String. Names of players and characters are stored in nameList array. A "for" loop is used to get names in "team" array of players. Then the're checked with the method isValid(). */
     func getNames(player: Player?) -> [String] {
         var nameList = [String]()
-        
         if let p = player {
             nameList.append(p.name)
             for character in p.team {
@@ -160,11 +159,10 @@ class Main {
         print("Incorect choice, please select a character: ")
         return selectCharacter(player: player)
     }
-
+    
+    
     
 }
-
-
 
 
 //Main's instance
@@ -192,6 +190,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("Now choose your victim !")
         victim =  main.selectCharacter(player: playerTwo)
     }
+    
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
         print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left"
@@ -201,7 +200,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
              + "\n")
     }
     if !playerTwo.hasACharacterAlive() {
-        print("\(playerTwo.name) all your character are dead... You LOOSE... 😒 "
+        print("\(playerTwo.name) all your characters are dead... You LOOSE... 😒 "
             + "\n"
             + "\n\(playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉")
         break

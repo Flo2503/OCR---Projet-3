@@ -20,7 +20,11 @@ class Character {
     func isAlive() -> Bool {
         return self.lifePoint > 0
     }
+    
+    
+    
 }
+
 
 
 

@@ -160,7 +160,18 @@ class Main {
         return selectCharacter(player: player)
     }
     
-    
+    func changeWeapon(character: Character) {
+        if character is Mage {
+            character.weapon = LowHealing()
+            print("A chest appears and \(character.name) gets a new power ! His power is replaced by \(character.weapon.name + " " + character.weapon.icon)"
+                + "\n")
+        } else {
+            character.weapon = Hammer()
+            print("A chest appears and \(character.name) gets a new weapon ! His weapon is replaced by \(character.weapon.name + " " + character.weapon.icon)"
+                + "\n")
+
+        }
+    }
     
 }
 
@@ -172,6 +183,7 @@ main.displayCharacters()
 main.populateTeam()
 main.displayTeam()
 
+
 /* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
 
 guard let playerOne = main.playerOne, let playerTwo = main.playerTwo else {
@@ -181,6 +193,9 @@ guard let playerOne = main.playerOne, let playerTwo = main.playerTwo else {
 while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     print("\(playerOne.name) choose an attacker !")
     var attacker = main.selectCharacter(player: playerOne)
+    if arc4random_uniform(5) == 3 {
+        main.changeWeapon(character: attacker)
+    }
     var victim: Character
     if attacker is Mage {
         print("Select a character to treat in your team 💉 :")
@@ -190,10 +205,10 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("Now choose your victim !")
         victim =  main.selectCharacter(player: playerTwo)
     }
-    
     attacker.attack(victim: victim)
+
     if victim.lifePoint > 0 {
-        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left"
+        print("\(victim.name) has \(victim.lifePoint) lifes point left"
              + "\n")
     } else {
         print("\(victim.name) is dead 🧟 "
@@ -207,6 +222,9 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     print("\(playerTwo.name) choose an attacker !")
     attacker = main.selectCharacter(player: playerTwo)
+    if arc4random_uniform(5) == 3 {
+        main.changeWeapon(character: attacker)
+    }
     if attacker is Mage {
         print("Select a character to treat in your team 💉 :")
         victim = main.selectCharacter(player: playerTwo)
@@ -217,7 +235,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     attacker.attack(victim: victim)
     if victim.lifePoint > 0 {
-        print("OUCH !! \(victim.name) has \(victim.lifePoint) lifes point left"
+        print("\(victim.name) has \(victim.lifePoint) lifes point left"
             + "\n")
     } else {
         print("\(victim.name) is dead 🧟 "

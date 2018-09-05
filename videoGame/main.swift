@@ -162,11 +162,15 @@ class Main {
     
     func changeWeapon(character: Character) {
         if character is Mage {
-            character.weapon = LowHealing()
+            let newWeapon = [LowHealing(), SuperHealing()]
+            let randomIndex = Int(arc4random_uniform(UInt32(newWeapon.count)))
+            character.weapon = (newWeapon[randomIndex])
             print("A chest appears and \(character.name) gets a new power ! His power is replaced by \(character.weapon.name + " " + character.weapon.icon)"
                 + "\n")
         } else {
-            character.weapon = Hammer()
+            let newWeapon = [Hammer(), DeathSickle(), TemplarSword(), Knife()]
+            let randomIndex = Int(arc4random_uniform(UInt32(newWeapon.count)))
+            character.weapon = (newWeapon[randomIndex])
             print("A chest appears and \(character.name) gets a new weapon ! His weapon is replaced by \(character.weapon.name + " " + character.weapon.icon)"
                 + "\n")
 

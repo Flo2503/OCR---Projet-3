@@ -11,12 +11,14 @@ class Character {
         self.weapon = weapon
         self.icon = icon
     }
-    
-    func attack(victim: Character) {
+
+// Method allowing to attack. Return the number of point of damages.
+    func attack(victim: Character) -> Int {
         victim.lifePoint -= weapon.pointOfDamage
+        return weapon.pointOfDamage
     }
     
-    
+// Method to check if a character is alive. Return true if character's life point greater than zero.
     func isAlive() -> Bool {
         return self.lifePoint > 0
     }

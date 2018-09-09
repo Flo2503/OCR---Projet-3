@@ -104,7 +104,7 @@ class Main {
         return nameList
     }
 
-/* Loop allowing each player to choose and name characters alternately. The "for" loop is runig until three characters are chosen by each user. Chosen characters are stored in "team" array of each players calling choosenCharacters() method allowing to display choices. */
+/* Loop allowing each player to choose and name characters alternately. The "for" loop is runing until three characters are chosen by each user. Chosen characters are stored in "team" array of each players calling choosenCharacters() method allowing to display choices. */
     func populateTeam() {
         for i in 0...2 {
             print("Player one choose a character: ")
@@ -140,7 +140,7 @@ class Main {
     func selectCharacter(player: Player) -> Character {
         for (index, character) in player.team.enumerated() {
             if character.isAlive() {
-                print(index, ":", character.icon + " " + character.name + " ",  character.lifePoint, "❤️")
+                print(index, ":", character.icon + " " + character.name + " ", "❤️",  character.lifePoint, " ", character.weapon.icon, "Dammage:",  character.weapon.pointOfDamage)
             }
         }
         if let characterIndex = readLine() {
@@ -160,17 +160,19 @@ class Main {
         return selectCharacter(player: player)
     }
     
+    
+ /* Method allowing to change weapon of a character among several weapons stored in an array. Weapon is selected randomly. Method is called in the game loop. */
     func changeWeapon(character: Character) {
         if character is Mage {
             let newWeapon = [LowHealing(), SuperHealing()]
             let randomIndex = Int(arc4random_uniform(UInt32(newWeapon.count)))
-            character.weapon = (newWeapon[randomIndex])
+            character.weapon = newWeapon[randomIndex]
             print("A chest appears and \(character.name) gets a new power ! His power is replaced by \(character.weapon.name + " " + character.weapon.icon)"
                 + "\n")
         } else {
             let newWeapon = [Hammer(), DeathSickle(), TemplarSword(), Knife()]
-            let randomIndex = Int(arc4random_uniform(UInt32(newWeapon.count)))
-            character.weapon = (newWeapon[randomIndex])
+            let randomIndex = Int(arc4random_uniform((UInt32(newWeapon.count))))
+            character.weapon = newWeapon[randomIndex]
             print("A chest appears and \(character.name) gets a new weapon ! His weapon is replaced by \(character.weapon.name + " " + character.weapon.icon)"
                 + "\n")
 
@@ -188,11 +190,18 @@ main.populateTeam()
 main.displayTeam()
 
 
-/* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
-
+// Avoid force unwrap.
 guard let playerOne = main.playerOne, let playerTwo = main.playerTwo else {
     fatalError()
 }
+
+// Var for game stat.
+var turn = 0
+var dammageStatistic = [String: Int]()
+
+
+
+/* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
 
 while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     print("\(playerOne.name) choose an attacker !")
@@ -209,7 +218,10 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("Now choose your victim !")
         victim =  main.selectCharacter(player: playerTwo)
     }
-    attacker.attack(victim: victim)
+    
+    let playerOneDammage = attacker.attack(victim: victim)
+    // "Bonus" Gets the number of point of dammages for each character of player One during the  game.
+    dammageStatistic[attacker.name] = (dammageStatistic[attacker.name] ?? 0) + playerOneDammage
 
     if victim.lifePoint > 0 {
         print("\(victim.name) has \(victim.lifePoint) lifes point left"
@@ -218,10 +230,15 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("\(victim.name) is dead 🧟 "
              + "\n")
     }
+    
+    // "Bonus" Account the number of laps of the game.
+    turn += 1
+    
     if !playerTwo.hasACharacterAlive() {
         print("\(playerTwo.name) all your characters are dead... You LOOSE... 😒 "
             + "\n"
-            + "\n\(playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉")
+            + "\n\(playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉"
+            + "\n")
         break
     }
     print("\(playerTwo.name) choose an attacker !")
@@ -237,7 +254,11 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("Now choose your victim !")
         victim  =  main.selectCharacter(player: playerOne)
     }
-    attacker.attack(victim: victim)
+    
+    let playerTwoDammage = attacker.attack(victim: victim)
+    // "Bonus" Gets the number of point of dammages for each character of player Two during the  game.
+    dammageStatistic[attacker.name] = (dammageStatistic[attacker.name] ?? 0) + playerTwoDammage
+
     if victim.lifePoint > 0 {
         print("\(victim.name) has \(victim.lifePoint) lifes point left"
             + "\n")
@@ -245,21 +266,39 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("\(victim.name) is dead 🧟 "
              + "\n")
     }
+    // "Bonus" Account the number of laps of the game.
+    turn += 1
+    
     if !playerOne.hasACharacterAlive() {
         print("\(playerOne.name) all your character are dead... You LOOSE... 😒 "
             + "\n"
-            + "\n\(playerTwo.name) you annihilated the opposing team, you WIN !! 🎉 🎉")
+            + "\n\(playerTwo.name) you annihilated the opposing team, you WIN !! 🎉 🎉"
+            + "\n")
         break
         
     }
     
-    
-
 }
 
+// Displays the number of laps during the game.
+print("Number of laps during the game : \(turn)"
+     + "\n")
 
+var dammagePrevious = 0
+var attackerName: String?
 
+// Algorithm checking the highest value.
+for dammageStatistic in dammageStatistic {
+    let dammage = dammageStatistic.value
+    
+    if dammagePrevious < dammage {
+        dammagePrevious = dammage
+        attackerName = dammageStatistic.key
+        
+    }
+}
 
-
+// Displays the character who inflicted the most point of dammage during the game.
+print("The character who inflicted the most point of dammage during the game is \(attackerName!)")
 
 

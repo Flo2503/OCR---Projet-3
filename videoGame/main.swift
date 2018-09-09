@@ -197,7 +197,7 @@ guard let playerOne = main.playerOne, let playerTwo = main.playerTwo else {
 
 // Var for game stat.
 var turn = 0
-var dammageStatistic = [String: Int]()
+var damageStatistic = [String: Int]()
 
 
 
@@ -221,7 +221,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     
     let playerOneDammage = attacker.attack(victim: victim)
     // "Bonus" Gets the number of point of dammages for each character of player One during the  game.
-    dammageStatistic[attacker.name] = (dammageStatistic[attacker.name] ?? 0) + playerOneDammage
+    damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerOneDammage
 
     if victim.lifePoint > 0 {
         print("\(victim.name) has \(victim.lifePoint) lifes point left"
@@ -257,7 +257,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     
     let playerTwoDammage = attacker.attack(victim: victim)
     // "Bonus" Gets the number of point of dammages for each character of player Two during the  game.
-    dammageStatistic[attacker.name] = (dammageStatistic[attacker.name] ?? 0) + playerTwoDammage
+    damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerTwoDammage
 
     if victim.lifePoint > 0 {
         print("\(victim.name) has \(victim.lifePoint) lifes point left"
@@ -284,21 +284,21 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
 print("Number of laps during the game : \(turn)"
      + "\n")
 
-var dammagePrevious = 0
+var damagePrevious = 0
 var attackerName: String?
 
-// Algorithm checking the highest value.
-for dammageStatistic in dammageStatistic {
-    let dammage = dammageStatistic.value
+// Algorithm checking the highest value in dictionary.
+for damageStatistic in damageStatistic {
+    let damage = damageStatistic.value
     
-    if dammagePrevious < dammage {
-        dammagePrevious = dammage
-        attackerName = dammageStatistic.key
+    if damagePrevious < damage {
+        damagePrevious = damage
+        attackerName = damageStatistic.key
         
     }
 }
 
-// Displays the character who inflicted the most point of dammage during the game.
+// Displays the character who inflicted the most point of damage during the game.
 print("The character who inflicted the most point of dammage during the game is \(attackerName!)")
 
 

@@ -106,7 +106,7 @@ class Main {
 
 /* Loop allowing each player to choose and name characters alternately. The "for" loop is runing until three characters are chosen by each user. Chosen characters are stored in "team" array of each players calling choosenCharacters() method allowing to display choices. */
     func populateTeam() {
-        for i in 0...2 {
+        for _ in 0...2 {
             print("Player one choose a character: ")
             playerOne?.team.append(chooseCharacters())
             print("Player two choose a character: ")
@@ -227,7 +227,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("\(victim.name) has \(victim.lifePoint) lifes point left"
              + "\n")
     } else {
-        print("\(victim.name) is dead 🧟 "
+        print("\(victim.name) is dead ☠️ "
              + "\n")
     }
     
@@ -263,7 +263,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
         print("\(victim.name) has \(victim.lifePoint) lifes point left"
             + "\n")
     } else {
-        print("\(victim.name) is dead 🧟 "
+        print("\(victim.name) is dead ☠️ "
              + "\n")
     }
     // "Bonus" Account the number of laps of the game.
@@ -281,13 +281,13 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
 }
 
 // Displays the number of laps during the game.
-print("Number of laps during the game : \(turn)"
+print("🏁 Number of laps during the game : \(turn) 🏁"
      + "\n")
 
 var damagePrevious = 0
 var attackerName: String?
 
-// Algorithm checking the highest value in dictionary.
+// Algorithm checking the highest value in dictionary. The highest value is stored in "let damage" constant.
 for damageStatistic in damageStatistic {
     let damage = damageStatistic.value
     
@@ -298,7 +298,8 @@ for damageStatistic in damageStatistic {
     }
 }
 
-// Displays the character who inflicted the most point of damage during the game.
-print("The character who inflicted the most point of dammage during the game is \(attackerName!)")
+// Displays the character who inflicted the most points of damage during the game.
+print("The character who inflicted the most points of dammage during the game is \(attackerName!) with \(damagePrevious) points of damage."
+     + "\n")
 
 

@@ -220,7 +220,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     
     let playerOneDammage = attacker.attack(victim: victim)
-    // "Bonus" Gets the number of point of dammages for each character of player One during the  game.
+    // "Bonus" Gets the number of points of damage for each character of player One during the  game.
     damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerOneDammage
 
     if victim.lifePoint > 0 {
@@ -256,7 +256,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     
     let playerTwoDammage = attacker.attack(victim: victim)
-    // "Bonus" Gets the number of point of dammages for each character of player Two during the  game.
+    // "Bonus" Gets the number of points of damage for each character of player Two during the  game.
     damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerTwoDammage
 
     if victim.lifePoint > 0 {
@@ -287,7 +287,7 @@ print("🏁 Number of laps during the game : \(turn) 🏁"
 var damagePrevious = 0
 var attackerName: String?
 
-// Algorithm checking the highest value in dictionary. The highest value is stored in "let damage" constant.
+// "Bonus" Algorithm checking the highest value in dictionary. The highest value is stored in "let damage" constant.
 for damageStatistic in damageStatistic {
     let damage = damageStatistic.value
     
@@ -298,7 +298,7 @@ for damageStatistic in damageStatistic {
     }
 }
 
-// Displays the character who inflicted the most points of damage during the game.
+// "Bonus" Displays the character who inflicted the most points of damage during the game.
 print("The character who inflicted the most points of dammage during the game is \(attackerName!) with \(damagePrevious) points of damage."
      + "\n")
 

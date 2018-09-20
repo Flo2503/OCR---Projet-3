@@ -220,7 +220,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     
     let playerOneDammage = attacker.attack(victim: victim)
-    // "Bonus" Gets the number of point of dammages for each character of player One during the  game.
+    // "Bonus" Gets the number of points of damage for each character of player One during the  game.
     damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerOneDammage
 
     if victim.lifePoint > 0 {
@@ -256,7 +256,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     
     let playerTwoDammage = attacker.attack(victim: victim)
-    // "Bonus" Gets the number of point of dammages for each character of player Two during the  game.
+    // "Bonus" Gets the number of points of damage for each character of player Two during the  game.
     damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerTwoDammage
 
     if victim.lifePoint > 0 {

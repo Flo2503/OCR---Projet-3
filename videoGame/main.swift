@@ -5,7 +5,7 @@ class Main {
     var playerOne: Player?
     var playerTwo: Player?
     
-/* Get the name of the users. Call func "isValid" and returns a player if name is correct (if name is not empty and if name doesn't already exists).
+/* Get the name of the users. Call method "isValid" and returns a player if name is correct (if name is not empty and if name doesn't already exists).
      If conditions are not respected, the method returns an error message and restarts. */
     func createPlayer() -> Player {
         if let name = readLine(), isValid(name: name) {
@@ -18,8 +18,10 @@ class Main {
 
 // Start the game and create players alternately. Player One calls createPlayer() then the player Two.
     func createPlayers() {
-        print("Hello !"
-        + "\nPlayer One enter your name:")
+        print("""
+            Hello !
+            Player One enter your name:
+            """)
         playerOne = createPlayer()
         print("Player Two enter your name: ")
         playerTwo = createPlayer()
@@ -28,30 +30,33 @@ class Main {
     
 // Display details of each character. Call static property in each character class (defaultIcon, and so on...).
     func displayCharacters() {
-        print("Characters : "
-            + "\n"
-            + "\nFighter \(Fighter.defaultIcon): The classic attacker, a good warrior !"
-            + "\nLife Points: \(Fighter.defaultLifepoint) // Weapon: \(Fighter.defaultWeapon.name) \(Fighter.defaultWeapon.icon)"
-            + "\n"
-            + "\nMage \(Mage.defaultIcon): His talent ? Heal the members of his team. "
-            + "\nLife Points: \(Mage.defaultLifepoint) // Weapon: \(Mage.defaultWeapon.name) \(Mage.defaultWeapon.icon)"
-            + "\n"
-            + "\nColossus \(Colossus.defaultIcon): Imposing and very resistant, but it will not hurt you badly."
-            + "\nLife Points: \(Colossus.defaultLifepoint) // Weapon: \(Colossus.defaultWeapon.name) \(Colossus.defaultWeapon.icon)"
-            + "\n"
-            + "\nDwarf \(Dwarf.defaultIcon): His ax will deal you a lot of damage, but he does not have a lot of health."
-            + "\nLife Points: \(Dwarf.defaultLifepoint) // Weapon: \(Dwarf.defaultWeapon.name) \(Dwarf.defaultWeapon.icon)"
-            + "\n")
+        print("""
+            Characters :
+            Fighter \(Fighter.defaultIcon): The classic attacker, a good warrior !
+            Life Points: \(Fighter.defaultLifepoint) // Weapon: \(Fighter.defaultWeapon.name) \(Fighter.defaultWeapon.icon)
+            
+            Mage \(Mage.defaultIcon): His talent ? Heal the members of his team.
+            Life Points: \(Mage.defaultLifepoint) // Weapon: \(Mage.defaultWeapon.name) \(Mage.defaultWeapon.icon)
+            
+            Colossus \(Colossus.defaultIcon): Imposing and very resistant, but it will not hurt you badly.
+            Life Points: \(Colossus.defaultLifepoint) // Weapon: \(Colossus.defaultWeapon.name) \(Colossus.defaultWeapon.icon)
+            
+            Dwarf \(Dwarf.defaultIcon): His ax will deal you a lot of damage, but he does not have a lot of health.
+            Life Points: \(Dwarf.defaultLifepoint) // Weapon: \(Dwarf.defaultWeapon.name) \(Dwarf.defaultWeapon.icon)
+            
+            """)
         
     }
     
 
 /* Display choices to the users allows them to choose characters. The method get the answers of the users and returns a character. Then this method calls nameCharacter() in order to name the chosen character. If choice is not valid, the method returns an error message and restarts. */
     func chooseCharacters() -> Character  {
-        print("\n1. Fighter \(Fighter.defaultIcon)"
-            + "\n2. Mage \(Mage.defaultIcon)"
-            + "\n3. Colossus \(Colossus.defaultIcon)"
-            + "\n4. Dwarf \(Dwarf.defaultIcon)")
+        print("""
+            1. Fighter \(Fighter.defaultIcon)
+            2. Mage \(Mage.defaultIcon)
+            3. Colossus \(Colossus.defaultIcon)
+            4. Dwarf \(Dwarf.defaultIcon)
+            """)
             if let choice = readLine() {
             switch choice {
             case"1":
@@ -118,13 +123,16 @@ class Main {
 
 /* The method gets Player in parameter. A loop "for" is used to iterate over "team" array of each players allowing to display details (names, icons, and life points) of each characters in teams. */
     func playerTeam(player: Player?) {
-        print("\n"
-            + "\n\(player!.name) ! Your team is composed by the following characters :")
+        print("""
+            
+            \(player!.name) ! Your team is composed by the following characters :
+            """)
         for characters in player!.team {
-            print("\(characters.icon) \(characters.name)"
-                + "\nLife Point: \(characters.lifePoint)"
-                + "\nWeapon: \(characters.weapon.name) \(characters.weapon.icon) "
-                + "\n")
+            print("""
+                \(characters.icon) \(characters.name)
+                Life Point: \(characters.lifePoint)
+                Weapon: \(characters.weapon.name) \(characters.weapon.icon)
+                """)
         }
     }
     
@@ -140,7 +148,7 @@ class Main {
     func selectCharacter(player: Player) -> Character {
         for (index, character) in player.team.enumerated() {
             if character.isAlive() {
-                print(index, ":", character.icon + " " + character.name + " ", "❤️",  character.lifePoint, " ", character.weapon.icon, "Dammage:",  character.weapon.pointOfDamage)
+                print(index, ":", character.icon + " " + character.name + " ", "❤️",  character.lifePoint, " ", character.weapon.icon, "Damage:",  character.weapon.pointOfDamage)
             }
         }
         if let characterIndex = readLine() {
@@ -167,14 +175,18 @@ class Main {
             let newWeapon = [LowHealing(), SuperHealing()]
             let randomIndex = Int(arc4random_uniform(UInt32(newWeapon.count)))
             character.weapon = newWeapon[randomIndex]
-            print("A chest appears and \(character.name) gets a new power ! His power is replaced by \(character.weapon.name + " " + character.weapon.icon)"
-                + "\n")
+            print("""
+                A chest appears and \(character.name) gets a new power ! His power is replaced by \(character.weapon.name + " " + character.weapon.icon)
+                
+                """)
         } else {
             let newWeapon = [Hammer(), DeathSickle(), TemplarSword(), Knife()]
             let randomIndex = Int(arc4random_uniform((UInt32(newWeapon.count))))
             character.weapon = newWeapon[randomIndex]
-            print("A chest appears and \(character.name) gets a new weapon ! His weapon is replaced by \(character.weapon.name + " " + character.weapon.icon)"
-                + "\n")
+            print("""
+                A chest appears and \(character.name) gets a new weapon ! His weapon is replaced by \(character.weapon.name + " " + character.weapon.icon)
+                
+                """)
 
         }
     }
@@ -204,7 +216,7 @@ var damageStatistic = [String: Int]()
 /* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
 
 while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
-    print("\(playerOne.name) choose an attacker !")
+    print("\n\(playerOne.name) choose an attacker !")
     var attacker = main.selectCharacter(player: playerOne)
     if arc4random_uniform(5) == 3 {
         main.changeWeapon(character: attacker)
@@ -220,7 +232,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     
     let playerOneDammage = attacker.attack(victim: victim)
-    // "Bonus" Gets the number of point of dammages for each character of player One during the  game.
+    // "Bonus" Gets the number of points of damage for each character of player One during the  game.
     damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerOneDammage
 
     if victim.lifePoint > 0 {
@@ -235,10 +247,10 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     turn += 1
     
     if !playerTwo.hasACharacterAlive() {
-        print("\(playerTwo.name) all your characters are dead... You LOOSE... 😒 "
-            + "\n"
-            + "\n\(playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉"
-            + "\n")
+        print("""
+            \(playerTwo.name) all your characters are dead... You LOOSE... 😒
+            \(playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉
+            """)
         break
     }
     print("\(playerTwo.name) choose an attacker !")
@@ -256,7 +268,7 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     }
     
     let playerTwoDammage = attacker.attack(victim: victim)
-    // "Bonus" Gets the number of point of dammages for each character of player Two during the  game.
+    // "Bonus" Gets the number of points of damage for each character of player Two during the  game.
     damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerTwoDammage
 
     if victim.lifePoint > 0 {
@@ -270,10 +282,10 @@ while playerOne.hasACharacterAlive() && playerTwo.hasACharacterAlive() {
     turn += 1
     
     if !playerOne.hasACharacterAlive() {
-        print("\(playerOne.name) all your character are dead... You LOOSE... 😒 "
-            + "\n"
-            + "\n\(playerTwo.name) you annihilated the opposing team, you WIN !! 🎉 🎉"
-            + "\n")
+        print("""
+            \(playerTwo.name) all your characters are dead... You LOOSE... 😒
+            \(playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉
+            """)
         break
         
     }

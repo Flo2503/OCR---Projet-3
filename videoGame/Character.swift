@@ -12,7 +12,7 @@ class Character {
         self.icon = icon
     }
 
-// Method allowing to attack. Return the number of point of damages.
+// Method allowing to attack. Return the number of points of damage.
     func attack(victim: Character) -> Int {
         victim.lifePoint -= weapon.pointOfDamage
         return weapon.pointOfDamage

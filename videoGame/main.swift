@@ -155,8 +155,10 @@ class Main {
             if let index = Int(characterIndex), player.team.indices.contains(index) {
               let character = player.team[index]
                 if character.isAlive() {
-                    print("You selected \(character.name)"
-                    + "\n")
+                    print("""
+                          You selected \(character.name)
+                          
+                    """)
                     return character
                 } else {
                     print("This character is dead, choose an other one: ")

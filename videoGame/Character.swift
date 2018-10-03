@@ -1,3 +1,5 @@
+import Foundation
+
 // Mother class for each characters
 class Character {
     var weapon: Weapon
@@ -22,6 +24,8 @@ class Character {
     func isAlive() -> Bool {
         return self.lifePoint > 0
     }
+    
+
     
     
     

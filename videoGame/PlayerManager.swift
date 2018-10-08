@@ -7,14 +7,19 @@ class PlayerManager {
         print("Player One enter your name: ")
         playerOne = PlayerManager.createPlayer()
         print("Player Two enter your name: ")
-        playerTwo = PlayerManager.createPlayer()    }
+        playerTwo = PlayerManager.createPlayer()
+    }
+
+    
+        
+    
     
     
 /* Get the name of the users. Call method "isValid" and returns a player if name is correct (if name is not empty and if name doesn't already exists).
      If conditions are not respected, the method returns an error message and restarts. */
     private static func createPlayer() -> Player {
         if let name = readLine() {
-            return Player(name: name)
+            return Player (name: name)
         } else {
             print("Incorect name, please enter a valid name !")
             return createPlayer()

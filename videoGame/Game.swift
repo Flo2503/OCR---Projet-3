@@ -3,35 +3,37 @@ import Foundation
 class Game {
   
     let playerManager: PlayerManager
+    var currentPlayer: Player
+    var nextPlayer: Player
     
     init(playerManager: PlayerManager) {
+        currentPlayer = playerManager.playerOne
+        nextPlayer = playerManager.playerTwo
         self.playerManager = playerManager
     }
     
-/* Method wich gets a player in parameter allowing to alternate player one and player two. It allows for each players to select a character in their own team in order to attack. The loop "for" iterates over players's team displaying an index for each characters, usefull for the users in order to select the character. The loop only displays the living characters calling isAlive() method. Then the method gets the user's answer. "Int(characterIndex)" -> readline() throws a string, so we switch it in Int. "player.team.indices.contains(index)" -> We check if the answer of the user is in the index. Then the choice of the user is stored in "character" property if the character is alive. If the answer of the user in incorect or if the character is dead, the method print an error message and returns the method. */
-    func selectCharacter(player: Player) -> Character {
-        for (index, character) in player.team.enumerated() {
-            if character.isAlive() {
-                print(index, ":", character.icon + " " + character.name + " ", "❤️",  character.lifePoint, " ", character.weapon.icon, "Damage:",  character.weapon.pointOfDamage)
-            }
-        }
+    private func changePlayer() {
+        let temp = currentPlayer
+        currentPlayer = nextPlayer
+        nextPlayer = temp
+    }
+    
+
+    
+    func selectCharacter() -> Character {
+        currentPlayer.displayTeam()
         if let characterIndex = readLine() {
-            if let index = Int(characterIndex), player.team.indices.contains(index) {
-                let character = player.team[index]
-                if character.isAlive() {
-                    print("""
-                        You selected \(character.name)
-                        
-                        """)
+            if let index =  Int(characterIndex) {
+                if let character = currentPlayer.getCharacterAliveAt(index: index) {
                     return character
-                } else {
-                    print("This character is dead, choose an other one: ")
-                    return selectCharacter(player: player)
+
                 }
+                
             }
+            
         }
         print("Incorect choice, please select a character: ")
-        return selectCharacter(player: player)
+        return selectCharacter()
     }
    
 /* Method allowing to change weapon of a character among several weapons stored in an array. Weapon is selected randomly. Method is called in the game loop. */
@@ -83,10 +85,15 @@ class Game {
             }
         }
     }
+    
 /* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
+    
+   
+    
+    
+    
     func gameLoop() {
-        
-        while playerManager.playerOne.hasACharacterAlive() && playerManager.playerTwo.hasACharacterAlive() {
+    while playerManager.playerOne.hasACharacterAlive() && playerManager.playerTwo.hasACharacterAlive() {
             print("\n\(playerManager.playerOne.name) choose an attacker !")
             var attacker = selectCharacter(player: playerManager.playerOne)
             if arc4random_uniform(5) == 3 {

@@ -2,7 +2,7 @@ import Foundation
 
 class Game {
   
-    let playerManager: PlayerManager
+   /* let playerManager: PlayerManager
     var currentPlayer: Player
     var nextPlayer: Player
     
@@ -10,21 +10,27 @@ class Game {
         currentPlayer = playerManager.playerOne
         nextPlayer = playerManager.playerTwo
         self.playerManager = playerManager
+    } */
+    
+    let playerManager: PlayerManager
+    
+    init (playerManager: PlayerManager) {
+        self.playerManager = playerManager
     }
     
-    private func changePlayer() {
+    /*private func changePlayer() {
         let temp = currentPlayer
         currentPlayer = nextPlayer
         nextPlayer = temp
-    }
+    }*/
     
 
     
-    func selectCharacter() -> Character {
-        currentPlayer.displayTeam()
+    func selectCharacter(player: Player) -> Character {
+        player.displayTeam()
         if let characterIndex = readLine() {
             if let index =  Int(characterIndex) {
-                if let character = currentPlayer.getCharacterAliveAt(index: index) {
+                if let character = player.getCharacterAliveAt(index: index) {
                     return character
 
                 }
@@ -33,7 +39,7 @@ class Game {
             
         }
         print("Incorect choice, please select a character: ")
-        return selectCharacter()
+        return selectCharacter(player: player)
     }
    
 /* Method allowing to change weapon of a character among several weapons stored in an array. Weapon is selected randomly. Method is called in the game loop. */
@@ -89,9 +95,6 @@ class Game {
 /* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
     
    
-    
-    
-    
     func gameLoop() {
     while playerManager.playerOne.hasACharacterAlive() && playerManager.playerTwo.hasACharacterAlive() {
             print("\n\(playerManager.playerOne.name) choose an attacker !")

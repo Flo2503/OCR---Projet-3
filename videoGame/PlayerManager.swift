@@ -21,7 +21,7 @@ class PlayerManager {
         if let name = readLine() {
             return Player (name: name)
         } else {
-            print("Incorect name, please enter a valid name !")
+            print("Incorrect name, please enter a valid name !")
             return createPlayer()
         }
     }

@@ -6,4 +6,5 @@ let teamManager = TeamManager(playerManager: playerManager)
 teamManager.populateTeam()
 let game = Game(playerManager: playerManager)
 game.gameLoop()
-
+game.laps() 
+game.displayStat()

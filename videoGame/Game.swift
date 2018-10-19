@@ -12,6 +12,10 @@ class Game {
         self.playerManager = playerManager
     } */
     
+    var attackerName: String?
+    var damagePrevious = 0
+    var turn = 0
+    var damageStatistic = [String: Int]()
     let playerManager: PlayerManager
     
     init (playerManager: PlayerManager) {
@@ -26,7 +30,7 @@ class Game {
     
 
     
-    func selectCharacter(player: Player) -> Character {
+    private func selectCharacter(player: Player) -> Character {
         player.displayTeam()
         if let characterIndex = readLine() {
             if let index =  Int(characterIndex) {
@@ -38,12 +42,12 @@ class Game {
             }
             
         }
-        print("Incorect choice, please select a character: ")
+        print("Incorrect choice, please select a character: ")
         return selectCharacter(player: player)
     }
    
 /* Method allowing to change weapon of a character among several weapons stored in an array. Weapon is selected randomly. Method is called in the game loop. */
-    func changeWeapon(character: Character) {
+    private func changeWeapon(character: Character) {
         if character is Mage {
             let newWeapon = [LowHealing(), SuperHealing()]
             let randomIndex = Int(arc4random_uniform(UInt32(newWeapon.count)))
@@ -63,10 +67,6 @@ class Game {
             
         }
     }
-
-    // Var for game stat.
-    var turn = 0
-    var damageStatistic = [String: Int]()
     
     
     // Displays the number of laps during the game.
@@ -76,11 +76,10 @@ class Game {
     }
     
     
-    var damagePrevious = 0
-    var attackerName: String?
-    
+   
+   
     // "Bonus" Algorithm checking the highest value in dictionary. The highest value is stored in "let damage" constant.
-    func damStat() {
+    private func damStat() {
         for damageStatistic in damageStatistic {
             let damage = damageStatistic.value
             
@@ -96,7 +95,7 @@ class Game {
     
    
     func gameLoop() {
-    while playerManager.playerOne.hasACharacterAlive() && playerManager.playerTwo.hasACharacterAlive() {
+        while playerManager.playerOne.hasACharacterAlive() && playerManager.playerTwo.hasACharacterAlive() {
             print("\n\(playerManager.playerOne.name) choose an attacker !")
             var attacker = selectCharacter(player: playerManager.playerOne)
             if arc4random_uniform(5) == 3 {

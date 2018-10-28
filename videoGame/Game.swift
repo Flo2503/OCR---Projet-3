@@ -75,14 +75,7 @@ class Game {
         return best
     }
     
-   
-    
-    func characterAttack() {
-        print("\n\(currentPlayer.name) choose an attacker !")
-        let attacker = selectCharacter(player: currentPlayer)
-        if arc4random_uniform(5) == 3 {
-            changeWeapon(character: attacker)
-        }
+    func IsMage(attacker: Character) {
         let victim: Character
         if attacker is Mage {
             print("Select a character to treat in your team 💉 :")
@@ -92,7 +85,10 @@ class Game {
             print("Now choose your victim !")
             victim =  selectCharacter(player: nextPlayer)
         }
-        attacker.attack(victim: victim)
+    }
+   
+    
+    func IsVictimAlive(victim: Character) {
         if victim.lifePoint > 0 {
             print("\(victim.name) has \(victim.lifePoint) lifes point left"
                 + "\n")
@@ -100,7 +96,19 @@ class Game {
             print("\(victim.name) is dead ☠️ "
                 + "\n")
         }
-        
+    }
+    
+    
+    func characterAttack() {
+        print("\n\(currentPlayer.name) choose an attacker !")
+        let attacker = selectCharacter(player: currentPlayer)
+        if arc4random_uniform(5) == 3 {
+            changeWeapon(character: attacker)
+        }
+        IsMage(attacker: attacker)
+        attacker.attack(victim: victim)
+        let victim: Character
+        IsVictimAlive(victim: victim)
         turn += 1
         
         if !nextPlayer.hasACharacterAlive() {

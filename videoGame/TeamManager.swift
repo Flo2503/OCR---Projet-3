@@ -6,7 +6,8 @@ class TeamManager {
         self.playerManager = playerManager
     }
     
-/* Display choices to the users allows them to choose characters. The method get the answers of the users and returns a character. Then this method calls nameCharacter() in order to name the chosen character. If choice is not valid, the method returns an error message and restarts. */
+/* Display choices to the users allows them to choose characters.
+     Return a selected character with a name.*/
     private func chooseCharacters() -> Character  {
         print("""
             1. Fighter \(Fighter.defaultIcon)
@@ -35,7 +36,8 @@ class TeamManager {
     
     
     
-/* Get characters's names given by the user. The method calls "isValid()" to check if name is not empty and if name doesn't already exists. If name is correct the method returns String, else it returns an error message and restarts. */
+/* Get characters's names given by the user.
+     Return characyer's name */
     private func nameCharacter() -> String {
         print("Please name your character: ")
         if let name = readLine() {
@@ -43,10 +45,11 @@ class TeamManager {
         } else {
             print("Incorrect name, please enter a valid name !")
             return nameCharacter()
+        }
     }
     
-
-}/* Loop allowing each player to choose and name characters alternately. The "for" loop is runing until three characters are chosen by each user. Chosen characters are stored in "team" array of each players calling choosenCharacters() method allowing to display choices. */
+    
+    // Loop allowing each player to choose and name characters alternately.
     func populateTeam() {
         var populate = 0
         while populate < 3 {

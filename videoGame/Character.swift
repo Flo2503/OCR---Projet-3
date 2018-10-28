@@ -6,6 +6,7 @@ class Character {
     var lifePoint: Int
     var name: String
     var icon: String
+    var totalDamage = 0
     
     init(name: String, lifePoint: Int, weapon: Weapon, icon: String) {
         self.name = name
@@ -14,16 +15,17 @@ class Character {
         self.icon = icon
     }
 
-// Method allowing to attack. Return the number of points of damage.
     func attack(victim: Character) -> Int {
         victim.lifePoint -= weapon.pointOfDamage
+        totalDamage += weapon.pointOfDamage
         return weapon.pointOfDamage
     }
     
-// Method to check if a character is alive. Return true if character's life point greater than zero.
     func isAlive() -> Bool {
         return self.lifePoint > 0
     }
+    
+    
     
 
     

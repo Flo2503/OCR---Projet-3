@@ -4,7 +4,6 @@ class Display {
         print("Hello ! Let's start the game !!")
     }
     
-// Display details of each character. Call static property in each character class (defaultIcon, and so on...).
     func displayCharacters() {
         print("""
             Characters :
@@ -24,7 +23,9 @@ class Display {
         
     }
     
-/* The method gets Player in parameter. A loop "for" is used to iterate over "team" array of each players allowing to display details (names, icons, and life points) of each characters in teams. */
+/*Datas of team's players to display.
+     Parameter: player, to get teams informations.
+     */
     private func playerTeam(player: Player) {
         print("""
             
@@ -39,7 +40,6 @@ class Display {
         }
     }
     
-// Method allowing to call each player for the method "playerTeam()".
     func displayTeam(playerOne: Player, playerTwo: Player) {
         playerTeam(player: playerOne)
         playerTeam(player: playerTwo)

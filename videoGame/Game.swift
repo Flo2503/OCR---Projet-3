@@ -2,34 +2,27 @@ import Foundation
 
 class Game {
   
-   /* let playerManager: PlayerManager
+    let playerManager: PlayerManager
     var currentPlayer: Player
     var nextPlayer: Player
+    var turn = 0
     
     init(playerManager: PlayerManager) {
         currentPlayer = playerManager.playerOne
         nextPlayer = playerManager.playerTwo
         self.playerManager = playerManager
-    } */
-    
-    var attackerName: String?
-    var damagePrevious = 0
-    var turn = 0
-    var damageStatistic = [String: Int]()
-    let playerManager: PlayerManager
-    
-    init (playerManager: PlayerManager) {
-        self.playerManager = playerManager
     }
     
-    /*private func changePlayer() {
+    
+    //Alternate players during the game.
+    private func changePlayer() {
         let temp = currentPlayer
         currentPlayer = nextPlayer
         nextPlayer = temp
-    }*/
+    }
     
 
-    
+    //
     private func selectCharacter(player: Player) -> Character {
         player.displayTeam()
         if let characterIndex = readLine() {
@@ -46,7 +39,8 @@ class Game {
         return selectCharacter(player: player)
     }
    
-/* Method allowing to change weapon of a character among several weapons stored in an array. Weapon is selected randomly. Method is called in the game loop. */
+/*Method allowing to change weapon of a character among several weapons stored in an array
+     Parameter: */
     private func changeWeapon(character: Character) {
         if character is Mage {
             let newWeapon = [LowHealing(), SuperHealing()]
@@ -68,117 +62,77 @@ class Game {
         }
     }
     
-    
-    // Displays the number of laps during the game.
-    func laps() {
-        print("🏁 Number of laps during the game : \(turn) 🏁"
-            + "\n")
-    }
-    
-    
-   
-   
-    // "Bonus" Algorithm checking the highest value in dictionary. The highest value is stored in "let damage" constant.
-    private func damStat() {
-        for damageStatistic in damageStatistic {
-            let damage = damageStatistic.value
-            
-            if damagePrevious < damage {
-                damagePrevious = damage
-                attackerName = damageStatistic.key
-                
+/*Get the character who inflict the mmost of damage during the game.
+     Parameter: Array of Character.
+     Return: The character who inflict the most of damage. */
+    private func getBestCharacter(_ team: [Character]) -> Character {
+        var best = team[0]
+        for char in team {
+            if char.totalDamage > best.totalDamage {
+                best = char
             }
         }
+        return best
     }
     
-/* Loop "while" allowing to each players to attack or treat alternately. It runs as long as each team has a character alive, calling method "hasACharacterAlive()" for each player. The loop calls "selectCharacter()" allowing to the user to select an attcker in this team. Loop checks if character is of type Mage (thanks to "if _ is" allowing to check the type of an object). If character is a mage victime displays the team of the player to treat a character, otherwise victim displays the team opponent to attack. */
+   
+    
+    func characterAttack() {
+        print("\n\(currentPlayer.name) choose an attacker !")
+        let attacker = selectCharacter(player: currentPlayer)
+        if arc4random_uniform(5) == 3 {
+            changeWeapon(character: attacker)
+        }
+        let victim: Character
+        if attacker is Mage {
+            print("Select a character to treat in your team 💉 :")
+            victim = selectCharacter(player: currentPlayer)
+            print("You treat \(victim.name) ❤️")
+        } else {
+            print("Now choose your victim !")
+            victim =  selectCharacter(player: nextPlayer)
+        }
+        attacker.attack(victim: victim)
+        if victim.lifePoint > 0 {
+            print("\(victim.name) has \(victim.lifePoint) lifes point left"
+                + "\n")
+        } else {
+            print("\(victim.name) is dead ☠️ "
+                + "\n")
+        }
+        
+        turn += 1
+        
+        if !nextPlayer.hasACharacterAlive() {
+            print("""
+                \(nextPlayer.name) all your characters are dead... You LOOSE... 😒
+                \(currentPlayer.name) you annihilated the opposing team, you WIN !! 🎉 🎉
+                """)
+        }
+    }
     
    
     func gameLoop() {
         while playerManager.playerOne.hasACharacterAlive() && playerManager.playerTwo.hasACharacterAlive() {
-            print("\n\(playerManager.playerOne.name) choose an attacker !")
-            var attacker = selectCharacter(player: playerManager.playerOne)
-            if arc4random_uniform(5) == 3 {
-                changeWeapon(character: attacker)
-            }
-            var victim: Character
-            if attacker is Mage {
-                print("Select a character to treat in your team 💉 :")
-                victim = selectCharacter(player: playerManager.playerOne)
-                print("You treat \(victim.name) ❤️")
-            } else {
-                print("Now choose your victim !")
-                victim =  selectCharacter(player: playerManager.playerTwo)
-            }
-            
-            let playerOneDammage = attacker.attack(victim: victim)
-            // "Bonus" Gets the number of points of damage for each character of player One during the  game.
-            damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerOneDammage
-            
-            if victim.lifePoint > 0 {
-                print("\(victim.name) has \(victim.lifePoint) lifes point left"
-                    + "\n")
-            } else {
-                print("\(victim.name) is dead ☠️ "
-                    + "\n")
-            }
-            
-            // "Bonus" Account the number of laps of the game.
-            turn += 1
-            
-            if !playerManager.playerTwo.hasACharacterAlive() {
-                print("""
-                    \(playerManager.playerTwo.name) all your characters are dead... You LOOSE... 😒
-                    \(playerManager.playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉
-                    """)
-                break
-            }
-            print("\(playerManager.playerTwo.name) choose an attacker !")
-            attacker = selectCharacter(player: playerManager.playerTwo)
-            if arc4random_uniform(5) == 3 {
-                changeWeapon(character: attacker)
-            }
-            if attacker is Mage {
-                print("Select a character to treat in your team 💉 :")
-                victim = selectCharacter(player: playerManager.playerTwo)
-                print("You treat \(victim.name) ❤️")
-            } else {
-                print("Now choose your victim !")
-                victim  =  selectCharacter(player: playerManager.playerOne)
-            }
-            
-            let playerTwoDammage = attacker.attack(victim: victim)
-            // "Bonus" Gets the number of points of damage for each character of player Two during the  game.
-            damageStatistic[attacker.name] = (damageStatistic[attacker.name] ?? 0) + playerTwoDammage
-            
-            if victim.lifePoint > 0 {
-                print("\(victim.name) has \(victim.lifePoint) lifes point left"
-                    + "\n")
-            } else {
-                print("\(victim.name) is dead ☠️ "
-                    + "\n")
-            }
-            // "Bonus" Account the number of laps of the game.
-            turn += 1
-            
-            if !playerManager.playerOne.hasACharacterAlive() {
-                print("""
-                    \(playerManager.playerTwo.name) all your characters are dead... You LOOSE... 😒
-                    \(playerManager.playerOne.name) you annihilated the opposing team, you WIN !! 🎉 🎉
-                    """)
-                break
-                
-            }
+            characterAttack()
+            changePlayer()
             
         }
     }
+    
+    func laps() {
+        print("🏁 Number of laps during the game : \(turn) 🏁"
+            + "\n")
+    }
  
-// "Bonus" Displays the character who inflicted the most points of damage during the game.
     func displayStat() {
-        print("The character who inflicted the most points of dammage during the game is \(attackerName!) with \(damagePrevious) points of damage."
+        let best = getBestCharacter(playerManager.playerOne.team + playerManager.playerTwo.team)
+        print("The character who inflicted the most points of dammage during the game is \(best.name) with \(best.totalDamage) points of damage."
             + "\n")
     }
     
+    
+   
     
 }
 

@@ -15,10 +15,9 @@ class Character {
         self.icon = icon
     }
 
-    func attack(victim: Character) -> Int {
+    func attack(victim: Character) {
         victim.lifePoint -= weapon.pointOfDamage
         totalDamage += weapon.pointOfDamage
-        return weapon.pointOfDamage
     }
     
     func isAlive() -> Bool {

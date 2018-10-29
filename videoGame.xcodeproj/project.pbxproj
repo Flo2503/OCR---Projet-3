@@ -83,6 +83,7 @@
 		5CD68C11215C025F0017C07E /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				5CF6B3AE2102980A00C370AC /* Character.swift */,
 				5CF6B3B52102980B00C370AC /* Colossus.swift */,
 				5CF6B3B22102980A00C370AC /* Fighter.swift */,
 				5CF6B3B02102980A00C370AC /* Mage.swift */,
@@ -94,6 +95,7 @@
 		5CD68C12215C02B90017C07E /* Weapons */ = {
 			isa = PBXGroup;
 			children = (
+				5CF6B3B42102980B00C370AC /* Weapon.swift */,
 				5C29BFC92106757300C93037 /* Mace.swift */,
 				5C29BFCB2106759100C93037 /* Sword.swift */,
 				5C29BFCF210675D100C93037 /* HealingPower.swift */,
@@ -130,9 +132,7 @@
 				5CD68C11215C025F0017C07E /* Characters */,
 				5CD68C12215C02B90017C07E /* Weapons */,
 				5CBFF88E210911FF00D3FD07 /* Player.swift */,
-				5CF6B3AE2102980A00C370AC /* Character.swift */,
 				5CD68C152161376F0017C07E /* TeamManager.swift */,
-				5CF6B3B42102980B00C370AC /* Weapon.swift */,
 				5CD68C0A215C001A0017C07E /* Game.swift */,
 				5CD68C0C215C00690017C07E /* PlayerManager.swift */,
 				5CD68C13215C09D50017C07E /* Display.swift */,

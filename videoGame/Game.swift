@@ -22,11 +22,11 @@ class Game {
     }
     
 
-    //
+
     private func selectCharacter(player: Player) -> Character {
         player.displayTeam()
         if let characterIndex = readLine() {
-            if let index =  Int(characterIndex) {
+            if let index = Int(characterIndex) {
                 if let character = player.getCharacterAliveAt(index: index) {
                     return character
 
@@ -39,8 +39,7 @@ class Game {
         return selectCharacter(player: player)
     }
    
-/*Method allowing to change weapon of a character among several weapons stored in an array
-     Parameter: */
+/*Method allowing to change weapon of a character among several weapons stored in an array */
     private func changeWeapon(character: Character) {
         if character is Mage {
             let newWeapon = [LowHealing(), SuperHealing()]
@@ -75,7 +74,7 @@ class Game {
         return best
     }
     
-    func IsMage(attacker: Character) {
+    private func getVictim(attacker: Character) -> Character {
         let victim: Character
         if attacker is Mage {
             print("Select a character to treat in your team 💉 :")
@@ -85,11 +84,12 @@ class Game {
             print("Now choose your victim !")
             victim =  selectCharacter(player: nextPlayer)
         }
+        return victim
     }
    
     
-    func IsVictimAlive(victim: Character) {
-        if victim.lifePoint > 0 {
+    private func displayVictim(victim: Character) {
+        if victim.isAlive() {
             print("\(victim.name) has \(victim.lifePoint) lifes point left"
                 + "\n")
         } else {
@@ -105,10 +105,9 @@ class Game {
         if arc4random_uniform(5) == 3 {
             changeWeapon(character: attacker)
         }
-        IsMage(attacker: attacker)
+        let victim = getVictim(attacker: attacker)
         attacker.attack(victim: victim)
-        let victim: Character
-        IsVictimAlive(victim: victim)
+        displayVictim(victim: victim)
         turn += 1
         
         if !nextPlayer.hasACharacterAlive() {

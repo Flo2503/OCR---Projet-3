@@ -16,7 +16,7 @@ class PlayerManager {
     /*Get the name of the users.
      Return Player with a name. */
     private static func createPlayer() -> Player {
-        if let name = readLine() {
+        if let name = readLine(), playerManager.isValid(name: name){
             return Player (name: name)
         } else {
             print("Incorrect name, please enter a valid name !")
@@ -38,14 +38,13 @@ class PlayerManager {
      Parameter: optional
      Rerturn: array of String. Names list stored inside.*/
     private func getNames(player: Player?) -> [String] {
-        var nameList = [String]()
         if let p = player {
-            nameList.append(p.name)
+            CheckName.nameList.append(p.name)
             for character in p.team {
-                nameList.append(character.name)
+                CheckName.nameList.append(character.name)
             }
         }
-        return nameList
+        return CheckName.nameList
     }
     
 }

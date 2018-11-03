@@ -1,5 +1,3 @@
-import Foundation
-
 // Mother class for each characters
 class Character {
     var weapon: Weapon

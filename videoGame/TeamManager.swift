@@ -37,10 +37,10 @@ class TeamManager {
     
     
 /* Get characters's names given by the user.
-     Return characyer's name */
+     Return character's name */
     private func nameCharacter() -> String {
         print("Please name your character: ")
-        if let name = readLine() {
+        if let name = readLine(), CheckName.isValid(name: name) {
             return name
         } else {
             print("Incorrect name, please enter a valid name !")

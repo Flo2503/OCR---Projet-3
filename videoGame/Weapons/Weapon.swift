@@ -1,8 +1,8 @@
 // Mother class for eaxh weapon.
 class Weapon  {
-    var icon: String
-    var name: String
-    var pointOfDamage: Int
+    let icon: String
+    let name: String
+    let pointOfDamage: Int
     
     init(name: String, pointOfDamage: Int, icon: String) {
         self.icon = icon

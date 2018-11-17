@@ -14,7 +14,7 @@ class Game {
     }
     
     
-    //Alternate players during the game.
+    //Alternate players during the game
     private func changePlayer() {
         let temp = currentPlayer
         currentPlayer = nextPlayer
